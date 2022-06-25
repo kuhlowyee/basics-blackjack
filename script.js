@@ -5,7 +5,7 @@ var gameDeck = '';
 
 var makeDeck = function () {
   var cardDeck = [];
-  var suits = ['diamonds', 'hearts', 'clubs', 'spades'];
+  var suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
 
   // Loop over the suits array
   var suitIndex = 0;
@@ -21,13 +21,13 @@ var makeDeck = function () {
       var cardName = rankCounter;
 
       if (cardName == 1) {
-        cardName = 'ace';
+        cardName = 'Ace';
       } else if (cardName == 11) {
-        cardName = 'jack';
+        cardName = 'Jack';
       } else if (cardName == 12) {
-        cardName = 'queen';
+        cardName = 'Queen';
       } else if (cardName == 13) {
-        cardName = 'king';
+        cardName = 'King';
       }
 
       // Create a new card with the current name, suit, and rank
@@ -121,14 +121,14 @@ var displayBothHands = function (playerHandArray, dealerHandArray) {
   var playerMessage = 'Player Hand: <br> ';
   var index = 0;
   while (index < playerHandArray.length) {
-    playerMessage = playerMessage + '-' + playerHandArray[index].name + ' of ' + playerHandArray[index].suit + '<br>';
+    playerMessage = playerMessage + '- ' + playerHandArray[index].name + ' of ' + playerHandArray[index].suit + '<br>';
     index += 1;
   };
 
   index = 0;
   var dealerMessage = "Dealer Hand: <br>";
   while (index < dealerHandArray.length) {
-    dealerMessage = dealerMessage + '-' + dealerHandArray[index].name + ' of ' + dealerHandArray[index].suit + '<br>';
+    dealerMessage = dealerMessage + '- ' + dealerHandArray[index].name + ' of ' + dealerHandArray[index].suit + '<br>';
     index += 1;
   }
 
@@ -165,7 +165,7 @@ var main = function (input) {
         outputMessage = displayBothHands(playerHand, dealerHand) + " The dealer got a blackjack! You lose!"
       }
     } else {
-      outputMessage = displayBothHands(playerHand, dealerHand) + "There is no blackjack!";
+      outputMessage = displayBothHands(playerHand, dealerHand) + "There is no blackjack! <br> Would you like to hit or stand?";
       gameMode = 'hit or stand';
     }
   } else if (gameMode == 'hit or stand') {
@@ -185,12 +185,12 @@ var main = function (input) {
         outputMessage = displayBothHands(playerHand, dealerHand) + "<br> It's a tie!" + displayHandTotalValues(playerHandTotalValue, dealerHandTotalValue);
       } else if ((playerHandTotalValue > dealerHandTotalValue && playerHandTotalValue <= 21) ||
         (playerHandTotalValue <= 21 && dealerHandTotalValue > 21)) {
-        outputMessage = displayPlayerAndDealerHands(playerHand, dealerHand) + "<br>Player wins!" + displayHandTotalValues(playerHandTotalValue, dealerHandTotalValue);
+        outputMessage = displayBothHands(playerHand, dealerHand) + "<br>Player wins!" + displayHandTotalValues(playerHandTotalValue, dealerHandTotalValue);
       } else {
-        outputMessage = displayPlayerAndDealerHands(playerHand, dealerHand) + "<br>Dealer wins!" + displayHandTotalValues(playerHandTotalValue, dealerHandTotalValue);
+        outputMessage = displayBothHands(playerHand, dealerHand) + "<br>Dealer wins!" + displayHandTotalValues(playerHandTotalValue, dealerHandTotalValue);
       }
     } else {
-      outputMessage = 'wrong input... only "hit" or "stand" are valid.<br><br>' + displayPlayerAndDealerHands(playerHand, dealerHand);
+      outputMessage = 'Please enter a valid input - "hit" or "stand"? <br><br>' + displayBothHands(playerHand, dealerHand);
     }
   }
   return outputMessage;
